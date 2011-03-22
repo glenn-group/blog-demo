@@ -1,3 +1,6 @@
 [submodule "system"]
 	path = system
 	url = git@github.com:glenn-group/glenn.git
+[submodule "app/vendor/ActiveRecord"]
+	path = app/vendor/ActiveRecord
+	url = https://github.com/kla/php-activerecord.git
