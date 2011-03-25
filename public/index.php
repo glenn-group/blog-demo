@@ -1,5 +1,4 @@
 <?php
-session_start();
 define('BASE_PATH', realpath('../') . DIRECTORY_SEPARATOR);
 define('APP_PATH', BASE_PATH . 'app' . DIRECTORY_SEPARATOR);
 define('EXTRAS_PATH', BASE_PATH . 'extras' . DIRECTORY_SEPARATOR);
