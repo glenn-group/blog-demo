@@ -1,4 +1,5 @@
 <?php
+session_start();
 define('BASE_PATH', realpath('../') . DIRECTORY_SEPARATOR);
 define('APP_PATH', BASE_PATH . 'app' . DIRECTORY_SEPARATOR);
 define('EXTRAS_PATH', BASE_PATH . 'extras' . DIRECTORY_SEPARATOR);
@@ -19,15 +20,16 @@ Loader::registerModules(array(
 	'glenn' => SYSTEM_PATH
 ));
 
-ErrorHandler::register();
+//ErrorHandler::register();
 
 $tree = new TreeArray();
 $tree->addParent('Blog', 'blog', '/', array('get' => 'blog#index', 'post' => 'blog#create'));
+$tree->addParent('New', 'new', '/blog', '#new');
 $tree->addParent('Category', '<*>', '/blog', '#category');
 $tree->addChild('Title', '<*>', '#view');
 $tree->addParent('CatchAll', '*', '/', 'blog#index');
 
-$router = new RouterTree('/glenn/demos/blog/public');
+$router = new RouterTree('/Blog/public');
 $router->addRoutes($tree->toArray());
 
 require_once APP_PATH . 'vendor/ActiveRecord/ActiveRecord.php';
