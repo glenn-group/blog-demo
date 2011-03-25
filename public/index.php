@@ -4,13 +4,12 @@ define('APP_PATH', BASE_PATH . 'app' . DIRECTORY_SEPARATOR);
 define('EXTRAS_PATH', BASE_PATH . 'extras' . DIRECTORY_SEPARATOR);
 define('SYSTEM_PATH', BASE_PATH . 'system' . DIRECTORY_SEPARATOR);
 
-use glenn\config\Config,
-	glenn\controller\FrontController,
-	glenn\http\Request,
-	glenn\loader\Loader,
-	glenn\error\ErrorHandler,
-	glenn\router\RouterTree,
-	glenn\router\datastructures\TreeArray;
+use glenn\loader\Loader,
+	_\error\ErrorHandler,
+	_\router\datastructures\TreeArray,
+	_\router\RouterTree,
+	_\http\Request,
+	_\controller\FrontController as FrontController;
 
 require SYSTEM_PATH . 'classes/loader/Loader.php';
 Loader::registerAutoloader();
