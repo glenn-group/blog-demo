@@ -22,10 +22,28 @@ Loader::registerModules(array(
 
 //ErrorHandler::register();
 
+
+
 $closuretree = new ClosureTree();
+/*
+$closuretree->add(
+	$string in format "controller#action", "#action" or array('get' => $string, 'otherhttpmethod' => $string),
+	$pattern = $action,
+	$name = ucfirst($action),
+	$sub => function($childtree) {
+		$childtree->add(.....)
+		$childtree->add(....... , function($childtree2){
+		
+		})
+	
+	}
+EXAMPLES...
+	 )
+
+*/
 
 $closuretree->add(array('get' => 'blog#index', 'post' => 'blog#create'),'blog', 'Blog', function($blog){
-	$blog->add("#edit");
+	$blog->add("#edit"); // pattern => blog/edit
 	
 	$blog->add("#category","<*>","Category",function($category){
 			
@@ -36,7 +54,6 @@ $closuretree->add("blog#index","*","CatchAll");
 
 
 //print_r($closuretree->toArray());
-
 
 $tree = new TreeArray();
 $tree->addParent('Blog', 'blog', '/', array('get' => 'blog#index', 'post' => 'blog#create'));
