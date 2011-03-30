@@ -20,8 +20,7 @@ Loader::registerModules(array(
 	'glenn' => SYSTEM_PATH
 ));
 
-<<<<<<< HEAD
-#ErrorHandler::register();
+//ErrorHandler::register();
 
 $closuretree = new ClosureTree();
 
@@ -36,11 +35,8 @@ $closuretree->add(array('get' => 'blog#index', 'post' => 'blog#create'),'blog', 
 $closuretree->add("blog#index","*","CatchAll");
 
 
-print_r($closuretree->toArray());
+//print_r($closuretree->toArray());
 
-=======
-//ErrorHandler::register();
->>>>>>> 08898818b7c478bdef936f5627009df343796e92
 
 $tree = new TreeArray();
 $tree->addParent('Blog', 'blog', '/', array('get' => 'blog#index', 'post' => 'blog#create'));
