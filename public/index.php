@@ -20,6 +20,7 @@ Loader::registerModules(array(
 	'glenn' => SYSTEM_PATH
 ));
 
+<<<<<<< HEAD
 #ErrorHandler::register();
 
 $closuretree = new ClosureTree();
@@ -37,14 +38,18 @@ $closuretree->add("blog#index","*","CatchAll");
 
 print_r($closuretree->toArray());
 
+=======
+//ErrorHandler::register();
+>>>>>>> 08898818b7c478bdef936f5627009df343796e92
 
 $tree = new TreeArray();
 $tree->addParent('Blog', 'blog', '/', array('get' => 'blog#index', 'post' => 'blog#create'));
+$tree->addParent('New', 'new', '/blog', '#new');
 $tree->addParent('Category', '<*>', '/blog', '#category');
 $tree->addChild('Title', '<*>', '#view');
 $tree->addParent('CatchAll', '*', '/', 'blog#index');
 
-$router = new RouterTree('/glenn/demos/blog/public');
+$router = new RouterTree('/Blog/public');
 $router->addRoutes($tree->toArray());
 
 require_once APP_PATH . 'vendor/ActiveRecord/ActiveRecord.php';

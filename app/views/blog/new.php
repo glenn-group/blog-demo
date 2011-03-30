@@ -1,5 +1,24 @@
+<html>
+<head>
+	<title>Add new posts!</title>
+	<base href="http://localhost/Blog/public/blog/new" />
+</head>
+<body>
 <h1>Create new blog post</h1>
 
-<form action="/" method="post">
-    <input type="text" name="title" />
+<form method="post" action="">
+    Title
+	<br/>
+	<input  type="text" name="post[title]" />
+	<br/>
+	Content
+	<br/>	
+	<textarea  cols="20" rows="10" name="post[content]" > </textarea>
+	<br/>
+	<input type="submit" value ="Submit"></input>
 </form>
+
+
+<a href="../">Back to Posts!</a>
+</body>
+</html>
