@@ -1,7 +1,7 @@
 <html>
 <head>
 	<title>Add new posts!</title>
-	<base href="http://localhost/Blog/public/blog/new" />
+	<base href="http://localhost/blog-demo/public/blog/new" />
 </head>
 <body>
 <h1>Create new blog post</h1>
