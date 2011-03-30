@@ -10,7 +10,8 @@ use glenn\config\Config,
 	glenn\loader\Loader,
 	glenn\error\ErrorHandler,
 	glenn\router\RouterTree,
-	glenn\router\datastructures\TreeArray;
+	glenn\router\datastructures\TreeArray,
+	glenn\router\datastructures\ClosureTree;
 
 require SYSTEM_PATH . 'classes/loader/Loader.php';
 Loader::registerAutoloader();
@@ -19,7 +20,23 @@ Loader::registerModules(array(
 	'glenn' => SYSTEM_PATH
 ));
 
-ErrorHandler::register();
+#ErrorHandler::register();
+
+$closuretree = new ClosureTree();
+
+$closuretree->add(array('get' => 'blog#index', 'post' => 'blog#create'),'blog', 'Blog', function($blog){
+	$blog->add("#edit");
+	
+	$blog->add("#category","<*>","Category",function($category){
+			
+		$category->add("#view","<*>","Title");
+	});
+});
+$closuretree->add("blog#index","*","CatchAll");
+
+
+print_r($closuretree->toArray());
+
 
 $tree = new TreeArray();
 $tree->addParent('Blog', 'blog', '/', array('get' => 'blog#index', 'post' => 'blog#create'));
