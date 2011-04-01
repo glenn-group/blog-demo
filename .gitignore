@@ -1,2 +1,7 @@
+*.db
 nbproject/*
 *\.LCKindex.php\~
+/nbproject/private/
+public/.htaccess
+
+

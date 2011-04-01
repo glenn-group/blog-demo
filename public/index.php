@@ -10,7 +10,8 @@ use glenn\config\Config,
 	glenn\loader\Loader,
 	glenn\error\ErrorHandler,
 	glenn\router\RouterTree,
-	glenn\router\datastructures\TreeArray;
+	glenn\router\datastructures\TreeArray,
+	glenn\router\datastructures\ClosureTree;
 
 require SYSTEM_PATH . 'classes/loader/Loader.php';
 Loader::registerAutoloader();
@@ -21,15 +22,57 @@ Loader::registerModules(array(
 
 //ErrorHandler::register();
 
+
+
+$closuretree = new ClosureTree();
+/*
+$closuretree->add(
+	$string in format "controller#action", "#action" or array('get' => $string, 'otherhttpmethod' => $string),
+	$pattern = $action,
+	$name = ucfirst($action),
+	$sub => function($childtree) {
+		$childtree->add(.....)
+		$childtree->add(....... , function($childtree2){
+		
+		})
+	
+	}
+EXAMPLES...
+	 )
+
+*/
+
+$closuretree->add(array('get' => 'blog#index', 'post' => 'blog#create', 'delete' => 'blog#destroy'),'blog', 'Blog', function($blog){
+	$blog->add("#new"); // pattern => blog/edit
+	$blog->add("#edit");
+	
+	//$blog->add("#category","<*>","Category",function($category){
+			
+		//$category->add("#view","<*>","Title");
+	//});
+});
+$closuretree->add("blog#index","*","CatchAll");
+
+
+//print_r($closuretree->toArray());
+
 $tree = new TreeArray();
-$tree->addParent('Blog', 'blog', '/', array('get' => 'blog#index', 'post' => 'blog#create', 'delete' => 'blog#destroy' ));
+
+
+$tree->addParent('Blog', 'blog', '/', array('get' => 'blog#index', 'post' => 'blog#create', 'delete' => 'blog#destroy'));
+
 $tree->addParent('New', 'new', '/blog', '#new');
+$tree->addParent('Edit', 'edit', '/blog', '#edit');
+$tree->addParent('Register', 'register', '/blog', '#register');
 $tree->addParent('Category', '<*>', '/blog', '#category');
 $tree->addChild('Title', '<*>', '#view');
 $tree->addParent('CatchAll', '*', '/', 'blog#index');
 
 $router = new RouterTree('/blog-demo/public');
-$router->addRoutes($tree->toArray());
+
+
+$router->addRoutes($closuretree->toArray());
+
 
 require_once APP_PATH . 'vendor/ActiveRecord/ActiveRecord.php';
 ActiveRecord\Config::initialize(function($cfg) {
