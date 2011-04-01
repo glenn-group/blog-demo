@@ -1,23 +1,22 @@
-<?php
+<?php 
 namespace app\controller;
 
-use app\model\Post,
+use app\model\User,
 glenn\controller\Controller,
     glenn\http\Response;
 
-class BlogController extends Controller
+class UserController extends Controller
 {
+
 public function indexAction()
 {
-$this->view->posts = Post::all();
+	$this->view->users = User::all();
 }
 
 public function newAction()
 {
 
 }
-
-
 
 public function viewAction(){
 
@@ -39,20 +38,19 @@ public function viewAction(){
 public function destroyAction()
 {
 
-	$post = Post::find($_POST['myformid']);
-	$post->delete();
-	$message = "The post has been deleted!";
+	$user = User::find($_POST['userform']);
+	$user->delete();
+	$message = "The user has been deleted!";
 	$_SESSION['notice'] = $message;
-	return Response::redirect('http://localhost/blog-demo/public/', 303);
+	return Response::redirect('http://localhost/blog-demo/public/user', 303);
 }
 
 public function createAction()
 {
-	Post::create( $_POST['post'] );
-	$message = "Thank you for your post!";
+	User::create( $_POST['user'] );
+	$message = "User registered!";
 	$_SESSION['notice'] = $message;
-	return Response::redirect('http://localhost/blog-demo/public/', 303);
+	return Response::redirect('http://localhost/blog-demo/public/user', 303);
 }
-
 
 }

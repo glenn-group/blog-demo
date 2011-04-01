@@ -46,16 +46,20 @@ $closuretree->add(array('get' => 'blog#index', 'post' => 'blog#create', 'delete'
 	$blog->add("#new"); // pattern => blog/edit
 	$blog->add("#edit");
 	
+	
 	//$blog->add("#category","<*>","Category",function($category){
 			
 		//$category->add("#view","<*>","Title");
 	//});
 });
+$closuretree->add(array('get' => 'user#index', 'post' => 'user#create', 'delete' => 'user#destroy'),'user', 'User', function($users){
+	$users->add("#new");
+});
 $closuretree->add("blog#index","*","CatchAll");
 
 
 //print_r($closuretree->toArray());
-
+/*
 $tree = new TreeArray();
 
 
@@ -67,7 +71,7 @@ $tree->addParent('Register', 'register', '/blog', '#register');
 $tree->addParent('Category', '<*>', '/blog', '#category');
 $tree->addChild('Title', '<*>', '#view');
 $tree->addParent('CatchAll', '*', '/', 'blog#index');
-
+*/
 $router = new RouterTree('/blog-demo/public');
 
 

@@ -19,6 +19,6 @@
 </form>
 
 
-<a href="../">Back to Posts!</a>
+<a href="../">Back to posts!</a>
 </body>
 </html>

@@ -1,23 +1,22 @@
-<?php
+<?php 
 namespace app\controller;
 
-use app\model\Post,
+use app\model\User,
 glenn\controller\Controller,
     glenn\http\Response;
 
-class BlogController extends Controller
+class UserController extends Controller
 {
+
 public function indexAction()
 {
-$this->view->posts = Post::all();
+
 }
 
 public function newAction()
 {
 
 }
-
-
 
 public function viewAction(){
 
@@ -48,11 +47,10 @@ public function destroyAction()
 
 public function createAction()
 {
-	Post::create( $_POST['post'] );
-	$message = "Thank you for your post!";
+	User::create( $_POST['post'] );
+	$message = "User registered!";
 	$_SESSION['notice'] = $message;
 	return Response::redirect('http://localhost/blog-demo/public/', 303);
 }
-
 
 }
