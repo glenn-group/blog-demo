@@ -42,13 +42,14 @@ EXAMPLES...
 
 */
 
-$closuretree->add(array('get' => 'blog#index', 'post' => 'blog#create'),'blog', 'Blog', function($blog){
-	$blog->add("#edit"); // pattern => blog/edit
+$closuretree->add(array('get' => 'blog#index', 'post' => 'blog#create', 'delete' => 'blog#destroy'),'blog', 'Blog', function($blog){
+	$blog->add("#new"); // pattern => blog/edit
+	$blog->add("#edit");
 	
-	$blog->add("#category","<*>","Category",function($category){
+	//$blog->add("#category","<*>","Category",function($category){
 			
-		$category->add("#view","<*>","Title");
-	});
+		//$category->add("#view","<*>","Title");
+	//});
 });
 $closuretree->add("blog#index","*","CatchAll");
 
@@ -65,7 +66,7 @@ $tree->addChild('Title', '<*>', '#view');
 $tree->addParent('CatchAll', '*', '/', 'blog#index');
 
 $router = new RouterTree('/blog-demo/public');
-$router->addRoutes($tree->toArray());
+$router->addRoutes($closuretree->toArray());
 
 require_once APP_PATH . 'vendor/ActiveRecord/ActiveRecord.php';
 ActiveRecord\Config::initialize(function($cfg) {
