@@ -22,13 +22,13 @@ Loader::registerModules(array(
 //ErrorHandler::register();
 
 $tree = new TreeArray();
-$tree->addParent('Blog', 'blog', '/', array('get' => 'blog#index', 'post' => 'blog#create'));
+$tree->addParent('Blog', 'blog', '/', array('get' => 'blog#index', 'post' => 'blog#create', 'delete' => 'blog#destroy' ));
 $tree->addParent('New', 'new', '/blog', '#new');
 $tree->addParent('Category', '<*>', '/blog', '#category');
 $tree->addChild('Title', '<*>', '#view');
 $tree->addParent('CatchAll', '*', '/', 'blog#index');
 
-$router = new RouterTree('/Blog/public');
+$router = new RouterTree('/blog-demo/public');
 $router->addRoutes($tree->toArray());
 
 require_once APP_PATH . 'vendor/ActiveRecord/ActiveRecord.php';

@@ -1,7 +1,7 @@
 <html>
 <head>
 	<title>Add new posts!</title>
-	<base href="http://localhost/Blog/public/blog/new" />
+	<base href="http://localhost/blog-demo/public/blog/new" />
 </head>
 <body>
 <h1>Create new blog post</h1>
@@ -15,7 +15,7 @@
 	<br/>	
 	<textarea  cols="20" rows="10" name="post[content]" > </textarea>
 	<br/>
-	<input type="submit" value ="Submit"></input>
+	<input type="submit" value ="Submit"/>
 </form>
 
 
