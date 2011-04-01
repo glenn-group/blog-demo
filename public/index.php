@@ -20,9 +20,7 @@ Loader::registerModules(array(
 	'glenn' => SYSTEM_PATH
 ));
 
-//ErrorHandler::register();
-
-
+ErrorHandler::register();
 
 $closuretree = new ClosureTree();
 /*
