@@ -1,0 +1,7 @@
+RewriteEngine on
+<<<<<<< HEAD
+RewriteBase /blog/
+=======
+RewriteBase /Blog/public/
+>>>>>>> 08898818b7c478bdef936f5627009df343796e92
+RewriteRule !\.(js|ico|txt|gif|jpg|png|css)$ index.php
