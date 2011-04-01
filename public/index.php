@@ -25,6 +25,7 @@ Loader::registerModules(array(
 $tree = new TreeArray();
 $tree->addParent('Blog', 'blog', '/', array('get' => 'blog#index', 'post' => 'blog#create', 'delete' => 'blog#destroy'));
 $tree->addParent('New', 'new', '/blog', '#new');
+$tree->addParent('Edit', 'edit', '/blog', '#edit');
 $tree->addParent('Register', 'register', '/blog', '#register');
 $tree->addParent('Category', '<*>', '/blog', '#category');
 $tree->addChild('Title', '<*>', '#view');
