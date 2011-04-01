@@ -1,7 +1,7 @@
 <?php
+define('START_TIME', microtime(true));
 define('BASE_PATH', realpath('../') . DIRECTORY_SEPARATOR);
 define('APP_PATH', BASE_PATH . 'app' . DIRECTORY_SEPARATOR);
-define('EXTRAS_PATH', BASE_PATH . 'extras' . DIRECTORY_SEPARATOR);
 define('SYSTEM_PATH', BASE_PATH . 'system' . DIRECTORY_SEPARATOR);
 
 use glenn\loader\Loader,
@@ -39,3 +39,7 @@ $request = new Request();
 $frontController = new FrontController($router);
 $response = $frontController->dispatch($request);
 $response->send();
+
+define('END_TIME', microtime(true));
+echo 'Time: ' . round((END_TIME-START_TIME)*1000, 2) . ' ms<br />';
+echo 'Memory: ' . round(memory_get_peak_usage()/1024, 3). ' KiB';
