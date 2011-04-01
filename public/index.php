@@ -56,13 +56,15 @@ $closuretree->add("blog#index","*","CatchAll");
 //print_r($closuretree->toArray());
 
 $tree = new TreeArray();
-$tree->addParent('Blog', 'blog', '/', array('get' => 'blog#index', 'post' => 'blog#create'));
+$tree->addParent('Blog', 'blog', '/', array('get' => 'blog#index', 'post' => 'blog#create', 'delete' => 'blog#destroy'));
 $tree->addParent('New', 'new', '/blog', '#new');
+$tree->addParent('Edit', 'edit', '/blog', '#edit');
+$tree->addParent('Register', 'register', '/blog', '#register');
 $tree->addParent('Category', '<*>', '/blog', '#category');
 $tree->addChild('Title', '<*>', '#view');
 $tree->addParent('CatchAll', '*', '/', 'blog#index');
 
-$router = new RouterTree('/Blog/public');
+$router = new RouterTree('/blog-demo/public');
 $router->addRoutes($tree->toArray());
 
 require_once APP_PATH . 'vendor/ActiveRecord/ActiveRecord.php';

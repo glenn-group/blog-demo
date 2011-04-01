@@ -1,3 +1,5 @@
 RewriteEngine on
-RewriteBase /blog/
+
+RewriteBase /blog-demo/public/
+
 RewriteRule !\.(js|ico|txt|gif|jpg|png|css)$ index.php

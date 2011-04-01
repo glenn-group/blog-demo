@@ -17,12 +17,34 @@ public function newAction()
 
 }
 
+public function registerAction(){
+	
+}
+
+public function viewAction(){
+
+	$pageURL = 'http';
+	//if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
+	//$pageURL .= "://";
+	if ($_SERVER["SERVER_PORT"] != "80") {
+	$pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
+	} else {
+	$pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+	}
+	
+	$parts = explode('/', $pageURL);
+	$theid = $parts[4];
+	$this->view->post = Post::find($_POST[$theid]);
+
+}
+
 public function destroyAction()
 {
-	Post::delete( $_POST['post'] );
-	$message = "The ".$_POST['post']['title']." post has been deleted!";
+	$post = Post::find($_POST['myformid']);
+	$post->delete();
+	$message = "The post has been deleted!";
 	$_SESSION['notice'] = $message;
-	return Response::redirect('http://localhost/Blog/public/', 303);
+	return Response::redirect('http://localhost/blog-demo/public/', 303);
 }
 
 public function createAction()
@@ -30,7 +52,7 @@ public function createAction()
 	Post::create( $_POST['post'] );
 	$message = "Thank you for your post!";
 	$_SESSION['notice'] = $message;
-	return Response::redirect('http://localhost/Blog/public/', 303);
+	return Response::redirect('http://localhost/blog-demo/public/', 303);
 }
 
 

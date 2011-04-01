@@ -1,10 +1,16 @@
 <html>
 <head>
-	<title>Add new posts!</title>
-	<base href="http://localhost/blog-demo/public/blog/new" />
+	<title>Edit post!</title>
+	<base href="http://localhost/blog-demo/public/blog/view" />
 </head>
 <body>
-<h1>Create new blog post</h1>
+<?php
+
+echo post['title'];
+
+?>
+
+<h1>Edit blog post</h1>
 
 <form method="post" action="">
     Title
