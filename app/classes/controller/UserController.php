@@ -20,7 +20,7 @@ public function newAction()
 
 public function viewAction(){
 
-	$pageURL = 'http';
+	//$pageURL = 'http';
 	//if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
 	//$pageURL .= "://";
 	if ($_SERVER["SERVER_PORT"] != "80") {
