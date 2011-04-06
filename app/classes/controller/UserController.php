@@ -34,6 +34,9 @@ public function viewAction(){
 	$this->view->post = Post::find($_POST[$theid]);
 
 }
+public function loginAction(){
+
+}
 
 public function destroyAction()
 {

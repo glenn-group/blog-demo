@@ -52,8 +52,9 @@ $closuretree->add(array('get' => 'blog#index', 'post' => 'blog#create', 'delete'
 		//$category->add("#view","<*>","Title");
 	//});
 });
-$closuretree->add(array('get' => 'user#index', 'post' => 'user#create', 'delete' => 'user#destroy'),'user', 'User', function($users){
-	$users->add("#new");
+$closuretree->add(array('get' => 'user#index', 'post' => 'user#create', 'delete' => 'user#destroy'),'user', 'User', function($user){
+	$user->add("#new");
+	$user->add("#login");
 });
 $closuretree->add("blog#index","*","CatchAll");
 
