@@ -22,26 +22,8 @@ Loader::registerModules(array(
 
 ErrorHandler::register();
 
-$closuretree = new ClosureTree();
-$closuretree->add('blog', array('get' => 'blog#index', 'post' => 'blog#create', 'delete' => 'blog#destroy'), 'Blog', function($blog){
-	$blog->add('new');
-	$blog->add('edit');
-});
-$closuretree->add('user', array('get' => 'user#index', 'post' => 'user#create', 'delete' => 'user#destroy'), 'User', function($users){
-	$users->add('new');
-});
-$closuretree->add('*', 'blog#index', "CatchAll");
-
-$router = new RouterTree('/blog-demo/public');
-$router->addRoutes($closuretree->toArray());
-
-require_once APP_PATH . 'vendor/ActiveRecord/ActiveRecord.php';
-ActiveRecord\Config::initialize(function($cfg) {
-	$cfg->set_model_directory(APP_PATH . 'classes/model');
-	$cfg->set_connections(array('development' => 'sqlite://blog.db'));
-});
-
 $request = new Request();
-$frontController = new FrontController($router);
-$response = $frontController->dispatch($request);
+$controller = new \glenn\test\Controller($request, new \glenn\view\View('test'));
+$controller->index();
+$response = new \glenn\http\Response($controller->view()->render());
 $response->send();
