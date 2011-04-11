@@ -5,7 +5,7 @@ define('EXTRAS_PATH', BASE_PATH . 'extras' . DIRECTORY_SEPARATOR);
 define('SYSTEM_PATH', BASE_PATH . 'system' . DIRECTORY_SEPARATOR);
 
 use glenn\config\Config,
-	glenn\controller\FrontController,
+	glenn\controller\Dispatcher,
 	glenn\http\Request,
 	glenn\loader\Loader,
 	glenn\error\ErrorHandler,
@@ -32,7 +32,7 @@ $closuretree->add('user', array('get' => 'user#index', 'post' => 'user#create', 
 });
 $closuretree->add('*', 'blog#index', "CatchAll");
 
-$router = new RouterTree('/blog-demo/public');
+$router = new RouterTree('/glenn-blog/public');
 $router->addRoutes($closuretree->toArray());
 
 require_once APP_PATH . 'vendor/ActiveRecord/ActiveRecord.php';
@@ -42,6 +42,6 @@ ActiveRecord\Config::initialize(function($cfg) {
 });
 
 $request = new Request();
-$frontController = new FrontController($router);
+$frontController = new Dispatcher($router);
 $response = $frontController->dispatch($request);
 $response->send();
