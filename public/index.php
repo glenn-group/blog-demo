@@ -23,7 +23,7 @@ Loader::registerModules(array(
 ErrorHandler::register();
 
 $request = new Request();
-$controller = new \glenn\test\Controller($request, new \glenn\view\View('test'));
+$controller = new \glenn\test\Controller($request);
 $controller->index();
 $response = new \glenn\http\Response($controller->view()->render());
 $response->send();
