@@ -5,7 +5,7 @@ define('EXTRAS_PATH', BASE_PATH . 'extras' . DIRECTORY_SEPARATOR);
 define('SYSTEM_PATH', BASE_PATH . 'system' . DIRECTORY_SEPARATOR);
 
 use glenn\config\Config,
-	glenn\controller\FrontController,
+	glenn\controller\Dispatcher,
 	glenn\http\Request,
 	glenn\loader\Loader,
 	glenn\error\ErrorHandler,
@@ -20,9 +20,7 @@ Loader::registerModules(array(
 	'glenn' => SYSTEM_PATH
 ));
 
-//ErrorHandler::register();
-
-
+ErrorHandler::register();
 
 $closuretree = new ClosureTree();
 /*
@@ -58,29 +56,12 @@ $closuretree->add('blog', array('get' => 'blog#index', 'post' => 'blog#create', 
 $closuretree->add('user',array('get' => 'user#index', 'post' => 'user#create', 'delete' => 'user#destroy'), 'User', function($user){
 	$user->add("new");
 	$user->add("login");
+
 });
-$closuretree->add("blog#index","*","CatchAll");
+$closuretree->add('*', 'blog#index', "CatchAll");
 
-
-//print_r($closuretree->toArray());
-/*
-$tree = new TreeArray();
-
-
-$tree->addParent('Blog', 'blog', '/', array('get' => 'blog#index', 'post' => 'blog#create', 'delete' => 'blog#destroy'));
-
-$tree->addParent('New', 'new', '/blog', '#new');
-$tree->addParent('Edit', 'edit', '/blog', '#edit');
-$tree->addParent('Register', 'register', '/blog', '#register');
-$tree->addParent('Category', '<*>', '/blog', '#category');
-$tree->addChild('Title', '<*>', '#view');
-$tree->addParent('CatchAll', '*', '/', 'blog#index');
-*/
-$router = new RouterTree('/blog-demo/public');
-
-
+$router = new RouterTree('/glenn-blog/public');
 $router->addRoutes($closuretree->toArray());
-
 
 require_once APP_PATH . 'vendor/ActiveRecord/ActiveRecord.php';
 ActiveRecord\Config::initialize(function($cfg) {
@@ -89,6 +70,6 @@ ActiveRecord\Config::initialize(function($cfg) {
 });
 
 $request = new Request();
-$frontController = new FrontController($router);
+$frontController = new Dispatcher($router);
 $response = $frontController->dispatch($request);
 $response->send();
