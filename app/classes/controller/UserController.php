@@ -17,7 +17,7 @@ class UserController extends Controller {
 
     public function viewAction() {
 
-        //$pageURL = 'http';
+         $pageURL = 'http';
         //if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
         //$pageURL .= "://";
         if ($_SERVER["SERVER_PORT"] != "80") {
@@ -68,8 +68,8 @@ class UserController extends Controller {
         $username = $_POST['user']['username'];
         $pass = $_POST['user']['password'];
         $user = User::find($username);
-        $user->update_attributes(array('user' => $username, 'content' => $pass));
-        return Response::redirect('http://localhost/blog-demo/public/blog/user', 303);
+        $user->update_attributes(array('username' => $username, 'password' => $pass));
+        return Response::redirect('http://localhost/blog-demo/public/user', 303);
 
     }
 

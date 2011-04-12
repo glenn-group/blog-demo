@@ -15,7 +15,7 @@ echo post['title'];
 <form method="post" action="">
     Title
 	<br/>
-        <input name="post[id]" type=hidden value = "<?= $post['id'] ?>"/>
+        
 	<input  type="text" name="post[title]" />
 	<br/>
 	Content
