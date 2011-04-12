@@ -33,8 +33,7 @@ class BlogController extends Controller {
 
 
     public function viewAction() {
-
-        $pageURL = 'http';
+          $pageURL = 'http';
         //if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
         //$pageURL .= "://";
         if ($_SERVER["SERVER_PORT"] != "80") {
@@ -45,6 +44,8 @@ class BlogController extends Controller {
 
         $parts = explode('/', $pageURL);
         $theid = $parts[4];
+
+
         $this->view->post = Post::find($_POST[$theid]);
 
     }
@@ -64,12 +65,24 @@ class BlogController extends Controller {
         $_SESSION['notice'] = $message;
         return Response::redirect('http://localhost/blog-demo/public/', 303);
     }
+
+   
     public function updateAction() {
 
-        $toEdit = Post::find( $_POST['post'] );
-        echo 'katt';
-    //    return Response::redirect('http://localhost/blog-demo/public/blog', 303);
+         
+        $id = $_POST['post']['id'];
+        $title = $_POST['post']['title'];
+        $content = $_POST['post']['content'];
+        $post = Post::find($id);
+
+        $post->update_attributes(array('title' => $title, 'content' => $content));
+
+
+        //echo 'katt';
+        //exit();
+        return Response::redirect('http://localhost/blog-demo/public/blog', 303);
 
     }
+ 
 
 }

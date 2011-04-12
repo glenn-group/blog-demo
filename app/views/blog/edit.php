@@ -8,9 +8,10 @@
 
 
 <form method="post" action="../">
-	<input type="hidden" value="PUT" name="_method"></input>
+    <input type="hidden" value="PUT" name="_method"></input>
     Title
 	<br/>
+        <input name="post[id]" type="hidden" value = "<?php echo $post->id; ?>"/>
 	<input  type="text" name="post[title]" value="<?php echo $post->title; ?>"/>
 	<br/>
 	Content

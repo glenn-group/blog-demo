@@ -53,14 +53,17 @@ $closuretree->add('blog', array('get' => 'blog#index', 'post' => 'blog#create', 
 		//$category->add("#view","<*>","Title");
 	//});
 });
-$closuretree->add('user',array('get' => 'user#index', 'post' => 'user#create', 'delete' => 'user#destroy'), 'User', function($user){
+$closuretree->add('user', array('get' => 'user#index', 'post' => 'user#create', 'delete' => 'user#destroy'), 'User', function($user){
 	$user->add("new");
 	$user->add("login");
+        $user->add("*", array('get' => 'notSpecified!', 'delete' => 'blog#destroy'), 'id', function($id) {
+            $id->add('edit');
+        });
 
 });
-$closuretree->add('*', 'blog#index', "CatchAll");
 
-$router = new RouterTree('/glenn-blog/public');
+
+$router = new RouterTree('/blog-demo/public');
 $router->addRoutes($closuretree->toArray());
 
 require_once APP_PATH . 'vendor/ActiveRecord/ActiveRecord.php';
