@@ -11,7 +11,7 @@
 	Username: <input name = "user[username]" type="text" /><br/>
 	Password: <input name = "user[password]" type="password" />
 	<br/>
-	<input type="submit" value ="Submit"/>
+	<input type="submit" value ="Login"/>
 </form>
 
 <a href="../">Back to users!</a>

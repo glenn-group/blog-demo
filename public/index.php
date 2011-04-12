@@ -41,10 +41,13 @@ EXAMPLES...
 	 )
 
 */
+$closuretree ->add('', 'blog#index','index');
 
-$closuretree->add(array('get' => 'blog#index', 'post' => 'blog#create', 'delete' => 'blog#destroy'),'blog', 'Blog', function($blog){
-	$blog->add("#new"); // pattern => blog/edit
-	$blog->add("#edit");
+$closuretree->add('blog', array('get' => 'blog#index', 'post' => 'blog#create', 'put' => 'blog#update', 'delete' => 'blog#destroy'), 'Blog',function($blog){
+	$blog->add("new"); // pattern => blog/edit
+	$blog->add("*", array('get' => 'notSpecified!', 'delete' => 'blog#destroy'), 'id', function($id) {
+            $id->add('edit');
+        });
 	
 	
 	//$blog->add("#category","<*>","Category",function($category){
@@ -52,9 +55,9 @@ $closuretree->add(array('get' => 'blog#index', 'post' => 'blog#create', 'delete'
 		//$category->add("#view","<*>","Title");
 	//});
 });
-$closuretree->add(array('get' => 'user#index', 'post' => 'user#create', 'delete' => 'user#destroy'),'user', 'User', function($user){
-	$user->add("#new");
-	$user->add("#login");
+$closuretree->add('user',array('get' => 'user#index', 'post' => 'user#create', 'delete' => 'user#destroy'), 'User', function($user){
+	$user->add("new");
+	$user->add("login");
 });
 $closuretree->add("blog#index","*","CatchAll");
 
